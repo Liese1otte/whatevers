@@ -101,6 +101,7 @@ abstract class Creature {
 
     public clash(opponent: Creature): void {
         let atkModifier = this.atk - opponent.def + 1;
+        atkModifier = atkModifier > 0 ? atkModifier : 1;
         let atkRolls = Array.from({length: atkModifier}, () => { return rollD6(); });
         let isSuccessful = atkRolls.filter((e: number) => { return e >= this.successfulRollThreshold; }).length > 0 ? true : false;
         if (!isSuccessful) { return; }
